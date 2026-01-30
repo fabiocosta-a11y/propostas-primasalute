@@ -167,12 +167,64 @@
     </div>
     
     <script>
-        const baseProdutos = {
-            '135': {nome:'SISTEMA DE AQUECIMENTO DE MANTA TÉRMICA MODELO WARM AIR 135 220V - GENTHERM',marca:'Gentherm',valor:13990.00,ref:'REF. 135',imagem:'https://primasalute.com.br/wp-content/uploads/2026/01/zvNreuag.jpeg',caracteristicas:['• 4 níveis de temperatura','• Equipamento compacto e leve','• Alarmes de temperatura alta e baixa','• Versatilidade em mantas descartáveis, pediátrico, adulto e neonatal','• Indicação de horas de uso antes da manutenção'],incluso:'Incluso: 10 Mantas Térmicas Tam. Adulto',origem:'Origem: EUA - Fabricante: Gentherm Medical, LLC - USA',registro:'Registro ANVISA 80271299007'},
-            '243':{nome:'MANTA TERMICA DESC. FILTEREDFLO ADULTO CORPO INTEIRO REF. 243 - CAIXA COM 10 UNIDADES',marca:'Gentherm',valor:800.00,ref:'REF. 243'},
-            '244':{nome:'MANTA TERMICA DESC. FILTEREDFLO PEDIATRICA CORPO INTEIRO REF. 244 - CAIXA C/ 10 UNIDADES',marca:'Gentherm',valor:800.00,ref:'REF. 244'},
-            '246':{nome:'MANTA TERMICA DESC. FILTEREDFLO NEONATAL REF. 246 - CAIXA C/ 10 UNIDADES',marca:'Gentherm',valor:850.00,ref:'REF. 246'},
-            '248':{nome:'MANTA TERMICA DESC. FILTEREDFLO ADULTO P/ USO SOB O CORPO REF. 248 - CAIXA C/ 10 UNIDADES',marca:'Gentherm',valor:900.00,ref:'REF. 248'}
+const baseProdutos = {
+    '233': {nome: 'SISTEMA DE HIPO-HIPERTERMIA BLANKETROL III', marca: 'Gentherm', valor: 240000.00, ref: 'REF. 233'},
+    '196': {nome: 'COLCHAO TERMICO TAMANHO ADULTO PLASTIPAD', marca: 'Gentherm', valor: 6200.00, ref: '61CM X 152,4 CM'},
+    '194': {nome: 'COLCHAO TERMICO TAMANHO PEDIATRICO PLASTIPAD', marca: 'Gentherm', valor: 6200.00, ref: '55.9 CM X 76.2 CM'},
+    '193': {nome: 'COLCHAO TERMICO TAMANHO INFANTIL PLASTIPAD', marca: 'Gentherm', valor: 6200.00, ref: '30.5 CM X 45.7 CM'},
+    'DUO310BR-COMPLETO': {nome: 'SISTEMA DE AQUECIMENTO ASTOPAD DUO 310 C/ 1 COLCHAO COV150 (COMPLETO)', marca: 'Stihler/Gentherm', valor: 49000.00, ref: 'DUO310BR'},
+    'DUO310BR': {nome: 'SISTEMA DE AQUECIMENTO ASTOPAD DUO 310 (SOMENTE APARELHO)', marca: 'Stihler/Gentherm', valor: 35000.00, ref: 'DUO310BR'},
+    'COV070': {nome: 'COLCHAO REUTILIZAVEL P/ ASTOPAD 68X48CM (NEO)', marca: 'Stihler/Gentherm', valor: 14000.00, ref: 'COV070'},
+    'COV105': {nome: 'COLCHAO REUTILIZAVEL P/ ASTOPAD 105CMX50CM (MEIO CORPO)', marca: 'Stihler/Gentherm', valor: 14000.00, ref: 'COV105'},
+    'COV150': {nome: 'COLCHAO REUTILIZAVEL P/ ASTOPAD 150CMX50CM (ADULTO)', marca: 'Stihler/Gentherm', valor: 14000.00, ref: 'COV150'},
+    'COV155': {nome: 'COLCHAO REUTILIZAVEL P/ ASTOPAD 150CMX50CM (MEMBROS SUPERIORES)', marca: 'Stihler/Gentherm', valor: 13000.00, ref: 'COV155'},
+    'COV180': {nome: 'COLCHAO REUTILIZAVEL P/ ASTOPAD 180CMX50CM (ADULTO GRANDE)', marca: 'Stihler/Gentherm', valor: 14500.00, ref: 'COV180'},
+    'AFP300BR': {nome: 'AQUECEDOR DE SANGUE E FLUIDOS ASTOFLO PLUS ECO', marca: 'Stihler/Gentherm', valor: 25600.00, ref: 'AFP300BR'},
+    'AP220SBR': {nome: 'AQUECEDOR DE SANGUE E FLUIDOS ASTOTHERM PLUS 4MM', marca: 'Stihler/Gentherm', valor: 28900.00, ref: 'AP220SBR'},
+    'TMS-W101': {nome: 'UNIDADE DE AQUECIMENTO DE MANTA TÉRMICA TMS-W101', marca: 'Tappa', valor: 9500.00, ref: 'TMS-W101'},
+    'MANTAS-TAPPA': {nome: 'MANTAS TAPPA (TODOS OS MODELOS) - NÃO ESTERIL', marca: 'Tappa', valor: 65.00, ref: 'DIVERSOS'},
+    '135': {
+        nome: 'SISTEMA DE AQUECIMENTO DE MANTA TÉRMICA MODELO WARM AIR 135 220V - GENTHERM', 
+        marca: 'Gentherm', 
+        valor: 13990.00, 
+        ref: 'REF. 135',
+        imagem: 'https://primasalute.com.br/wp-content/uploads/2026/01/zvNreuag.jpeg',
+        caracteristicas: [
+            '• 4 níveis de temperatura',
+            '• Equipamento compacto e leve',
+            '• Alarmes de temperatura alta e baixa',
+            '• Versatilidade em mantas descartáveis, pediátrico, adulto e neonatal',
+            '• Indicação de horas de uso antes da manutenção'
+        ],
+        incluso: 'Incluso: 10 Mantas Térmicas Tam. Adulto',
+        origem: 'Origem: EUA - Fabricante: Gentherm Medical, LLC - USA',
+        registro: 'Registro ANVISA 80271299007'
+    },
+    '3227': {nome: 'SUPORTE AUXILIAR C/ RODIZIOS P/ WARM AIR', marca: 'Gentherm', valor: 990.00, ref: 'REF. 3227'},
+    '243-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO ADULTO CORPO INTEIRO', marca: 'Gentherm', valor: 65.00, ref: 'REF. 243'},
+    '443-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO MEIO CORPO SUPERIOR', marca: 'Gentherm', valor: 65.00, ref: 'REF. 443'},
+    '442-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO MEIO CORPO INFERIOR', marca: 'Gentherm', valor: 65.00, ref: 'REF. 442'},
+    '244-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO PEDIATRICA CORPO INTEIRO', marca: 'Gentherm', valor: 74.00, ref: 'REF. 244'},
+    '248-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO ADULTO P/ USO SOB O CORPO', marca: 'Gentherm', valor: 84.00, ref: 'REF. 248'},
+    '247-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO PEDIATRICA P/ USO SOB O CORPO', marca: 'Gentherm', valor: 84.00, ref: 'REF. 247'},
+    '246-UNIT': {nome: 'MANTA TERMICA DESC. FILTEREDFLO NEONATAL P/ USO SOB O CORPO', marca: 'Gentherm', valor: 80.00, ref: 'REF. 246'},
+    '344': {nome: 'MANTA TERMICA DESC. FILTEREDFLO TORSO', marca: 'Gentherm', valor: 100.00, ref: 'REF. 344'},
+    '243': {nome: 'MANTA TERMICA DESC. FILTEREDFLO ADULTO CORPO INTEIRO REF. 243 - CAIXA COM 10 UNIDADES', marca: 'Gentherm', valor: 800.00, ref: 'REF. 243'},
+    '442': {nome: 'MANTA TERMICA DESC. FILTEREDFLO MEIO CORPO INFERIOR REF. 442 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 800.00, ref: 'REF. 442'},
+    '443': {nome: 'MANTA TERMICA DESC. FILTEREDFLO MEIO CORPO SUPERIOR REF. 443 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 800.00, ref: 'REF. 443'},
+    '244': {nome: 'MANTA TERMICA DESC. FILTEREDFLO PEDIATRICA CORPO INTEIRO REF. 244 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 800.00, ref: 'REF. 244'},
+    '248': {nome: 'MANTA TERMICA DESC. FILTEREDFLO ADULTO P/ USO SOB O CORPO REF. 248 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 900.00, ref: 'REF. 248'},
+    '247': {nome: 'MANTA TERMICA DESC. FILTEREDFLO PEDIATRICA PARA USO SOB O CORPO REF. 247 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 950.00, ref: 'REF. 247'},
+    '246': {nome: 'MANTA TERMICA DESC. FILTEREDFLO NEONATAL REF. 246 - CAIXA C/ 10 UNIDADES', marca: 'Gentherm', valor: 850.00, ref: 'REF. 246'},
+    'TMS-W101-TAPPA': {nome: 'UNIDADE DE AQUECIMENTO DE MANTA TÉRMICA TMS-W101', marca: 'Tappa', valor: 9900.00, ref: 'TMS-W101'},
+    'WB-1101-N': {nome: 'MANTA TERMICA DESC. ADULTO CORPO INTEIRO', marca: 'Tappa', valor: 650.00, ref: 'WB-1101-N - CAIXA C/ 10 UNIDADES'},
+    'WB-1104-N': {nome: 'MANTA TERMICA DESC. MEMBROS INFERIORES', marca: 'Tappa', valor: 650.00, ref: 'WB-1104-N - CAIXA C/ 10 UNIDADES'},
+    'WB-1103-N': {nome: 'MANTA TERMICA DESC. MEMBROS SUPERIORES', marca: 'Tappa', valor: 650.00, ref: 'WB-1103-N - CAIXA C/ 10 UNIDADES'},
+    'WB-2101-N': {nome: 'MANTA TERMICA DESC. PEDIATRICA CORPO INTEIRO', marca: 'Tappa', valor: 650.00, ref: 'WB-2101-N - CAIXA C/ 10 UNIDADES'},
+    'WB-1201-N': {nome: 'MANTA TERMICA DESC. ADULTO SOB O CORPO', marca: 'Tappa', valor: 650.00, ref: 'WB-1201-N - CAIXA C/ 10 UNIDADES'},
+    'WB-2202-N': {nome: 'MANTA TERMICA DESC. PEDIATRICA SOB O CORPO', marca: 'Tappa', valor: 650.00, ref: 'WB-2202-N - CAIXA C/ 10 UNIDADES'},
+    'WB-2201-N': {nome: 'MANTA TERMICA DESC. NEONATAL SOB O CORPO', marca: 'Tappa', valor: 650.00, ref: 'WB-2201-N - CAIXA C/ 10 UNIDADES'}
+};
         };
         
         let contadorProdutos = 0;
