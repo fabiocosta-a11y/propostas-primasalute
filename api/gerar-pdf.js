@@ -1,7 +1,20 @@
 const chromium = require('@sparticuz/chromium');
 const puppeteer = require('puppeteer-core');
 
+// Configuração otimizada do Chromium para Vercel
+chromium.setHeadlessMode = true;
+chromium.setGraphicsMode = false;
+
 module.exports = async (req, res) => {
+  // Permitir CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método não permitido' });
   }
@@ -16,12 +29,16 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Dados obrigatórios faltando' });
     }
 
-    // Iniciar navegador
+    // Log para debug
+    console.log('Iniciando geração de PDF para:', dados.numeroProposta);
+
+    // Iniciar navegador com timeout menor
     browser = await puppeteer.launch({
-      args: chromium.args,
+      args: [...chromium.args, '--disable-dev-shm-usage'],
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: true,
+      ignoreHTTPSErrors: true,
     });
 
     const page = await browser.newPage();
@@ -29,8 +46,11 @@ module.exports = async (req, res) => {
     // Gerar HTML da proposta
     const html = gerarHTMLProposta(dados);
     
-    // Carregar conteúdo
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    // Carregar conteúdo com timeout
+    await page.setContent(html, { 
+      waitUntil: 'domcontentloaded',
+      timeout: 8000 
+    });
     
     // Gerar PDF com alta qualidade
     const pdf = await page.pdf({
@@ -41,20 +61,32 @@ module.exports = async (req, res) => {
         right: '10mm',
         bottom: '10mm',
         left: '10mm'
-      }
+      },
+      timeout: 8000
     });
 
     await browser.close();
+    browser = null;
 
     // Retornar PDF
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="Proposta_${dados.numeroProposta.replace('/', '-')}.pdf"`);
-    res.send(pdf);
+    res.status(200).send(pdf);
 
   } catch (error) {
     console.error('Erro ao gerar PDF:', error);
-    if (browser) await browser.close();
-    res.status(500).json({ error: 'Erro ao gerar PDF: ' + error.message });
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (e) {
+        console.error('Erro ao fechar browser:', e);
+      }
+    }
+    res.status(500).json({ 
+      error: 'Erro ao gerar PDF', 
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 };
 
@@ -119,7 +151,6 @@ function gerarHTMLProposta(dados) {
   </style>
 </head>
 <body>
-  <!-- PÁGINA 1 -->
   <div class="page">
     <div class="header">
       <img src="https://primasalute.com.br/wp-content/uploads/2025/11/prima-salute-logo-site.png" class="logo">
@@ -205,7 +236,6 @@ function gerarHTMLProposta(dados) {
     </div>
   </div>
   
-  <!-- PÁGINA 2 -->
   <div class="page">
     <div class="header">
       <img src="https://primasalute.com.br/wp-content/uploads/2025/11/prima-salute-logo-site.png" class="logo">
